@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbols.dart';
 import 'dart:html';
 
-class XDateInput extends WebComponent{
+class XDateInput extends WebComponent{  
   @observable
   static bool initializing = false;
   @observable
@@ -19,6 +19,12 @@ class XDateInput extends WebComponent{
   DateTime today = new DateTime.now();
   @observable
   bool showDiv=false;
+  @observable
+  String inputid="";
+  @observable
+  String inputplaceholder="";
+  @observable
+  int inputmaxlength=9999;
   @observable
   String value;
   @observable

@@ -39,7 +39,7 @@
             </div>
           </template>          
         </span>
-        <input type="text" bind-value="value" on-change="onValueChange()" on-focus="show()">
+        <input id="{{inputid}}" type="text" bind-value="value" on-change="onValueChange()" on-focus="show()" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
       </template>
       <script type="application/dart" src="xdateinput.dart"></script>
       <style>
