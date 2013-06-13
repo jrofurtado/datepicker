@@ -1,0 +1,9 @@
+name: datepicker
+version: 0.1.0
+author: Joao Furtado
+description: Date Input using a Date Picker
+dependencies:
+  browser: any
+  intl: any
+  js: any
+  web_ui: any
