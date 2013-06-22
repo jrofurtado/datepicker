@@ -36,9 +36,11 @@ class XDateInput extends WebComponent{
     List<List<int>> calendarList = []; 
     List<int> weekList = [null,null,null,null,null,null,null];
     int pos = first.weekday-firstDayOfWeek;
+    if(pos>=7)
+      pos-=7;
     if(pos<0)
-      pos = pos + 7;
-    for(int i=1;i<=last.day;i++){
+      pos+=7;
+    for(int i=1;i<=last.day;i++){      
       weekList[pos]=i;
       pos++;
       if(pos>=7){

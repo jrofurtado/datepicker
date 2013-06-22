@@ -4,7 +4,7 @@
   <body>
     <element name="xdateinput" constructor="XDateInput" extends="span" apply-author-styles>
       <template>        
-        <span class="xdateinput_parent"><br>
+        <span class="xdateinput_parent">
           <template if="showDiv && initialized">
             <div class="xdateinput_datePicker">
               <div class="xdateinput_close">
@@ -44,10 +44,14 @@
       <script type="application/dart" src="xdateinput.dart"></script>
       <style>
 .xdateinput_parent{
-  position:absolute;
+  display:inline-block;
+  position:relative;
 }
 .xdateinput_datePicker{
-  position:relative;
+  position:absolute;
+  margin-top:10px;
+  position:absolute;
+  padding:5px 5px 5px 5px;
   z-index:999;
   border:1px solid;
   background-color:#fff;
@@ -67,6 +71,7 @@
 }
 .xdateinput_yearMonth{
   text-align:center;
+  white-space:no-wrap;
 }
 .xdateinput_close{
   text-align:right;
