@@ -4,6 +4,7 @@ import 'package:intl/intl_browser.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbols.dart';
 import 'dart:html';
+import 'dart:async';
 
 class XDateInput extends WebComponent{  
   @observable
@@ -29,6 +30,8 @@ class XDateInput extends WebComponent{
   String value;
   @observable
   DateTime date = new DateTime.now();
+  StreamSubscription documentOnClick;
+  StreamSubscription documentOnTouch;
   @observable
   List get calendarList{
     DateTime first = new DateTime(date.year,date.month,1);
@@ -104,6 +107,7 @@ class XDateInput extends WebComponent{
     }
     monthTexts = ds.STANDALONESHORTMONTHS;
   }
+  
   void created(){    
     if(!initializing){
       initializing = true;
@@ -114,14 +118,27 @@ class XDateInput extends WebComponent{
         });        
       });
     }
-    document.onClick.listen((Event e){
-      Element element = e.target;
-      while(element!=null){
-        if(element==this.host)
-          return;
-        element=element.parent;
-      }
-      showDiv=false;
-    });
+  }
+  
+  void checkView(Event e){
+    Element element = e.target;
+    while(element!=null){
+      if(element==this.host)
+        return;
+      element=element.parent;
+    }
+    showDiv=false;
+  }
+  
+  void inserted(){
+    documentOnClick = document.onClick.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);        
+    documentOnTouch = document.onTouchStart.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
+    onClick.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
+    onTouchStart.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
+  }
+  
+  void removed(){
+    if(this.documentOnClick != null){try{this.documentOnClick.cancel();}on StateError{}}
+    if(this.documentOnTouch != null){try{this.documentOnTouch.cancel();}on StateError{}}
   }
 }
