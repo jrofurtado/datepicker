@@ -113,6 +113,15 @@ class XDateInput extends WebComponent{
           initialized = true;
         });        
       });
-    }    
+    }
+    document.onClick.listen((Event e){
+      Element element = e.target;
+      while(element!=null){
+        if(element==this.host)
+          return;
+        element=element.parent;
+      }
+      showDiv=false;
+    });
   }
 }

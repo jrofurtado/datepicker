@@ -6,10 +6,7 @@
       <template>        
         <span class="xdateinput_parent">
           <template if="showDiv && initialized">
-            <div class="xdateinput_datePicker">
-              <div class="xdateinput_close">
-                <button class="xdateinput_button" on-click="close()">x</button>
-              </div>
+            <div class="xdateinput_datePicker">              
               <div class="xdateinput_yearMonth">
                 <button class="xdateinput_button" on-click="previousMonth()">&larr;</button>
                 {{monthText}}
@@ -39,7 +36,7 @@
             </div>
           </template>          
         </span>
-        <input id="{{inputid}}" type="text" bind-value="value" on-change="onValueChange()" on-focus="show()" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
+        <input id="{{inputid}}" type="text" on-focus="show()"  bind-value="value" on-change="onValueChange()" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
       </template>
       <script type="application/dart" src="xdateinput.dart"></script>
       <style>
