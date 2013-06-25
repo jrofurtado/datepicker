@@ -91,28 +91,28 @@ class XDateInput extends WebComponent{
     });
   }
   void previousYear(){
+    closing=false;
     date = new DateTime(date.year-1, date.month, 1);
     value=date.toString().substring(0,10);
     this.host.query("input").focus();
-    closing=false;
   }
   void nextYear(){
+    closing=false;
     date = new DateTime(date.year+1, date.month, 1);
     value=date.toString().substring(0,10);
-    this.host.query("input").focus();
-    closing=false;
+    this.host.query("input").focus();    
   }
   void previousMonth(){
+    closing=false;
     date = new DateTime(date.year, date.month-1, 1);
     value=date.toString().substring(0,10);
-    this.host.query("input").focus();
-    closing=false;
+    this.host.query("input").focus();    
   }
   void nextMonth(){
+    closing=false;
     date = new DateTime(date.year, date.month+1, 1);
     value=date.toString().substring(0,10);
-    this.host.query("input").focus();
-    closing=false;
+    this.host.query("input").focus();    
   }
   String get monthText{
     return monthTexts[date.month-1];
