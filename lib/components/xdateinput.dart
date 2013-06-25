@@ -21,6 +21,8 @@ class XDateInput extends WebComponent{
   @observable
   bool showDiv=false;
   @observable
+  bool closing=false;
+  @observable
   String inputid="";
   @observable
   String inputplaceholder="";
@@ -30,8 +32,6 @@ class XDateInput extends WebComponent{
   String value;
   @observable
   DateTime date = new DateTime.now();
-  StreamSubscription documentOnClick;
-  StreamSubscription documentOnTouch;
   @observable
   List get calendarList{
     DateTime first = new DateTime(date.year,date.month,1);
@@ -77,21 +77,38 @@ class XDateInput extends WebComponent{
   void show(){
     onValueChange();
     showDiv=true;
+    closing=false;
+    print("show show=${showDiv} closing=${closing}");
   }
   void close(){
-    showDiv=false;
+    closing=true;
+    new Timer(new Duration(seconds: 1), (){
+      if(closing){
+        showDiv=false;
+        print("closeTimer show=${showDiv} closing=${closing}");
+      }
+    });
   }
   void previousYear(){
     date = new DateTime(date.year-1, date.month, date.day);
+    this.host.query("input").focus();
+    closing=false;
+    print("previousYear show=${showDiv} closing=${closing}");
   }
   void nextYear(){
     date = new DateTime(date.year+1, date.month, date.day);
+    this.host.query("input").focus();
+    closing=false;
   }
   void previousMonth(){
     date = new DateTime(date.year, date.month-1, date.day);
+    this.host.query("input").focus();
+    closing=false;
   }
   void nextMonth(){
     date = new DateTime(date.year, date.month+1, date.day);
+    this.host.query("input").focus();
+    closing=false;
   }
   String get monthText{
     return monthTexts[date.month-1];
@@ -118,27 +135,5 @@ class XDateInput extends WebComponent{
         });        
       });
     }
-  }
-  
-  void checkView(Event e){
-    Element element = e.target;
-    while(element!=null){
-      if(element==this.host)
-        return;
-      element=element.parent;
-    }
-    showDiv=false;
-  }
-  
-  void inserted(){
-    documentOnClick = document.onClick.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);        
-    documentOnTouch = document.onTouchStart.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
-    onClick.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
-    onTouchStart.listen(checkView, onError:(e){print("onError <${e}>");}, onDone:(){print("onDone");}, cancelOnError:true);
-  }
-  
-  void removed(){
-    if(this.documentOnClick != null){try{this.documentOnClick.cancel();}on StateError{}}
-    if(this.documentOnTouch != null){try{this.documentOnTouch.cancel();}on StateError{}}
   }
 }
