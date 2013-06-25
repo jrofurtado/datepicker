@@ -65,7 +65,7 @@ class XDateInput extends WebComponent{
   }
   void chooseDay(int day){
     date=new DateTime(date.year, date.month, day);
-    value=date.toString().substring(0,1);
+    value=date.toString().substring(0,10);
     showDiv=false;
   }
   void onValueChange(){
