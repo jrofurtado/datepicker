@@ -6,7 +6,7 @@
       <template>        
         <span class="xdateinput_parent">
           <template if="showDiv && initialized">
-            <div class="xdateinput_datePicker">         
+            <div class="xdateinput_datePicker {{closing?'xdateinput_closing':''}}">         
               <div class="xdateinput_yearMonth">
                 <button class="xdateinput_button" on-click="previousMonth()">&larr;</button>
                 {{monthText}}
@@ -78,6 +78,11 @@
 }
 .xdateinput_button:hover{
   cursor:pointer;
+}
+.xdateinput_closing{
+  opacity:0;
+  transition-property:opacity;
+  transition-duration:0.5s;
 }
       </style>
     </element>

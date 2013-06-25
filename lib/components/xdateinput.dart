@@ -22,6 +22,7 @@ class XDateInput extends WebComponent{
   bool showDiv=false;
   @observable
   bool closing=false;
+  Timer timer;
   @observable
   String inputid="";
   @observable
@@ -64,7 +65,7 @@ class XDateInput extends WebComponent{
   }
   void chooseDay(int day){
     date=new DateTime(date.year, date.month, day);
-    value=date.toString().substring(0,10);
+    value=date.toString().substring(0,1);
     showDiv=false;
   }
   void onValueChange(){
@@ -78,35 +79,38 @@ class XDateInput extends WebComponent{
     onValueChange();
     showDiv=true;
     closing=false;
-    print("show show=${showDiv} closing=${closing}");
   }
   void close(){
     closing=true;
-    new Timer(new Duration(seconds: 1), (){
+    if(timer!=null)
+      timer.cancel();
+    timer = new Timer(new Duration(seconds:1), (){
       if(closing){
         showDiv=false;
-        print("closeTimer show=${showDiv} closing=${closing}");
       }
     });
   }
   void previousYear(){
-    date = new DateTime(date.year-1, date.month, date.day);
+    date = new DateTime(date.year-1, date.month, 1);
+    value=date.toString().substring(0,10);
     this.host.query("input").focus();
     closing=false;
-    print("previousYear show=${showDiv} closing=${closing}");
   }
   void nextYear(){
-    date = new DateTime(date.year+1, date.month, date.day);
+    date = new DateTime(date.year+1, date.month, 1);
+    value=date.toString().substring(0,10);
     this.host.query("input").focus();
     closing=false;
   }
   void previousMonth(){
-    date = new DateTime(date.year, date.month-1, date.day);
+    date = new DateTime(date.year, date.month-1, 1);
+    value=date.toString().substring(0,10);
     this.host.query("input").focus();
     closing=false;
   }
   void nextMonth(){
-    date = new DateTime(date.year, date.month+1, date.day);
+    date = new DateTime(date.year, date.month+1, 1);
+    value=date.toString().substring(0,10);
     this.host.query("input").focus();
     closing=false;
   }
