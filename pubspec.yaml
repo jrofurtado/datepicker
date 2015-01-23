@@ -1,9 +1,12 @@
 name: datepicker
-version: 0.1.10
+version: 0.2.0
 author: João Furtado<jrofurtado@gmail.com>
 description: Date Input using a Date Picker
 homepage: https://github.com/jrofurtado/datepicker
 dependencies:
   browser: any
   intl: any
-  web_ui: any
+  polymer: any
+transformers:
+- polymer:
+    entry_points: web/index.html

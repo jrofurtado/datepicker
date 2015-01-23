@@ -2,20 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Picker</title>
-    <link rel="import" href="packages/datepicker/components/xdateinput.html">
+    <link rel="import" href="packages/datepicker/components/date_input.html">
   </head>
   <body>
     <label for="date1">Date1</label>
-    <xdateinput id="xdate1" inputid="date1" value="{{date1}}"></xdateinput>
+    <date-input value="{{date1}}"></date-input>
     <label for="date2">Date2</label>
-    <xdateinput id="xdate2" inputid="date2" value="{{date2}}"></xdateinput>
+    <date-input value="{{date2}}"></date-input>
     <br>
     <label for="date3">Date3</label>
-    <xdateinput id="xdate3" inputid="date3" value="{{date3}}"></xdateinput>
+    <date-input value="{{date3}}"></date-input>
     <label for="date4">Date4</label>
-    <xdateinput id="xdate4" inputid="date4" value="{{date4}}"></xdateinput>
-    <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
+    <date-input value="{{date4}}"></date-input>
+    <script type="application/dart">export 'package:polymer/init.dart';</script>
   </body>
 </html>

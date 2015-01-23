@@ -1,0 +1,98 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+<polymer-element name="date-input">
+  <template>
+    <style>
+.xdateinput_parent{
+  display:inline-block;
+  position:relative;
+}
+.xdateinput_datePicker{
+  position:absolute;
+  margin-top:10px;
+  position:absolute;
+  padding:5px 5px 5px 5px;
+  z-index:999;
+  border:1px solid;
+  background-color:#fff;
+}
+.xdateinput_picker{
+}
+.xdateinput_picker:hover{
+  cursor:pointer;
+}
+.xdateinput_selected{
+  font-weight:bold;
+  border:1px solid;
+}
+.xdateinput_selectable:hover{
+  cursor:pointer;
+}
+.xdateinput_day{
+  text-align:center;
+}
+.xdateinput_weekday{
+  text-align:center;
+}
+.xdateinput_yearMonth{
+  text-align:center;
+  white-space:no-wrap;
+}
+.xdateinput_close{
+  text-align:right;
+}
+.xdateinput_button{
+  display:inline;
+}
+.xdateinput_button:hover{
+  cursor:pointer;
+}
+.xdateinput_closing{
+  opacity:0;
+  transition-property:opacity;
+  transition-duration:0.5s;
+}
+    </style>
+        <span class="xdateinput_parent">
+          <template if="{{showDiv}}">
+            <div class="xdateinput_datePicker">         
+              <div class="xdateinput_yearMonth">
+                <button class="xdateinput_button" on-click="{{previousMonth}}">&larr;</button>
+                {{monthText}}
+                <button class="xdateinput_button" on-click="{{nextMonth}}">&rarr;</button>
+                <button class="xdateinput_button" on-click="{{previousYear}}">&larr;</button>
+                {{date.year}}
+                <button class="xdateinput_button" on-click="{{nextYear}}">&rarr;</button>                
+              </div>
+              <div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="xdateinput_weekday" template repeat="{{weekday in weekdayTexts}}">{{weekday}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr template repeat="{{weekList in calendarList}}">
+                      <td class="xdateinput_day" template repeat="{{day in weekList}}">
+                        <template if="{{day!=null}}">
+                          <div class="xdateinput_selectable{{isToday(day)?' xdateinput_selected':''}}" on-click="{{chooseDay}}" data-day="{{day}}">{{day}}</div>
+                        </template>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </template>          
+        </span>
+        <input id="{{inputid}}" type="text" value="{{value}}" on-change="{{onValueChange}}" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
+        <span class="xdateinput_picker" on-click="{{show}}">
+          <template if="{{showDiv}}">
+            &uarr;
+          </template>
+          <template if="{{!showDiv}}">
+            &darr;
+          </template>
+        </span>
+  </template>
+  <script type="application/dart" src="date_input.dart"></script>
+</polymer-element>

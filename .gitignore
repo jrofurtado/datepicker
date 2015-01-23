@@ -1,5 +1,5 @@
-packages
-web/out
-pubspec.lock
+build
 .buildlog
-deploy
+.pub
+**/packages
+
