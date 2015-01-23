@@ -4,9 +4,9 @@ author: João Furtado<jrofurtado@gmail.com>
 description: Date Input using a Date Picker
 homepage: https://github.com/jrofurtado/datepicker
 dependencies:
-  browser: any
-  intl: any
-  polymer: any
+  browser: '>=0.10.0+2 <0.11.0'
+  intl: '>=0.12.0+1 <0.13.0'
+  polymer: '>=0.15.5 <0.16.0'
 transformers:
 - polymer:
     entry_points: web/index.html
