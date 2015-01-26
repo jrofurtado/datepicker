@@ -52,6 +52,7 @@
   transition-duration:0.5s;
 }
     </style>
+      <span class="xdateinput_container xdateinput_base">
         <span class="xdateinput_parent">
           <template if="{{showDiv}}">
             <div class="xdateinput_datePicker">         
@@ -84,7 +85,6 @@
             </div>
           </template>          
         </span>
-        <input id="{{inputid}}" type="text" value="{{value}}" on-change="{{onValueChange}}" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
         <span class="xdateinput_picker" on-click="{{show}}">
           <template if="{{showDiv}}">
             &uarr;
@@ -93,6 +93,8 @@
             &darr;
           </template>
         </span>
+        <input class="xdateinput_base xdateinput_input" id="{{inputid}}" type="text" value="{{value}}" on-change="{{onValueChange}}" placeholder="{{inputplaceholder}}" maxlength="{{inputmaxlength}}">
+      </span>
   </template>
   <script type="application/dart" src="date_input.dart"></script>
 </polymer-element>
