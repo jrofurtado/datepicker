@@ -58,7 +58,7 @@
             <div class="xdateinput_datePicker">         
               <div class="xdateinput_yearMonth">
                 <button class="xdateinput_button" on-click="{{previousMonth}}">&larr;</button>
-                {{monthText}}
+                {{monthTexts[date.month - 1]}}
                 <button class="xdateinput_button" on-click="{{nextMonth}}">&rarr;</button>
                 <button class="xdateinput_button" on-click="{{previousYear}}">&larr;</button>
                 {{date.year}}

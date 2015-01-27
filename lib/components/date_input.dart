@@ -9,8 +9,8 @@ import 'dart:html';
 @CustomTag('date-input')
 class XDateInput extends PolymerElement {
   @observable int firstDayOfWeek;
-  @observable List<String> monthTexts;
-  @observable List<String> weekdayTexts;
+  @observable List<String> monthTexts = toObservable([]);
+  @observable List<String> weekdayTexts = toObservable([]);
   DateTime today = new DateTime.now();
   @observable bool showDiv = false;
   Timer timer;
@@ -95,17 +95,15 @@ class XDateInput extends PolymerElement {
     date = new DateTime(date.year, date.month + 1, 1);
     value = date.toString().substring(0, 10);
   }
-  String get monthText {
-    return monthTexts[date.month - 1];
-  }
   void _initializeTexts(DateSymbols ds) {
     firstDayOfWeek = ds.FIRSTDAYOFWEEK;
-    weekdayTexts = [];
+    weekdayTexts.clear();
     for (int i = 0; i < 7; i++) {
       int k = firstDayOfWeek + i;
       if (k >= 7) k = k - 7;
       weekdayTexts.add(ds.STANDALONESHORTWEEKDAYS[k]);
     }
-    monthTexts = ds.STANDALONESHORTMONTHS;
+    monthTexts.clear();
+    monthTexts.addAll(ds.STANDALONESHORTMONTHS);
   }
 }
